@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Resources — Troy Cole Sales Training for Refractive Surgery</title>
+<meta name="description" content="Free guides, scripts, checklists, and tools for refractive and cataract surgery teams from Troy Cole.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  /* ── FREEBIES PAGE STYLES ── */
+
+  .freebies-section {
+    padding: 100px 0 120px;
+    background: var(--black-mid);
+  }
+
+  .freebies-intro {
+    max-width: 640px;
+    margin-bottom: 80px;
+  }
+  .freebies-intro-body {
+    font-family: var(--font-serif);
+    font-size: 20px; line-height: 1.7;
+    color: var(--white-dim); margin-top: 24px;
+  }
+
+  .freebies-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .freebie-card {
+    background: var(--black);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .freebie-card:hover { background: var(--black-light); }
+  .freebie-card-top-bar {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--purple); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .freebie-card:hover .freebie-card-top-bar { transform: scaleX(1); }
+
+  .freebie-type {
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 20px; font-weight: 500;
+  }
+  .freebie-icon {
+    font-size: 36px; margin-bottom: 20px;
+  }
+  .freebie-title {
+    font-family: var(--font-display);
+    font-size: 26px; letter-spacing: 0.04em;
+    color: var(--white); line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .freebie-desc {
+    font-size: 14px; line-height: 1.7;
+    color: var(--white-dim); flex: 1; margin-bottom: 32px;
+  }
+
+  .freebie-download-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: none; border: 1px solid rgba(111,66,193,0.4);
+    color: var(--purple-light);
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 12px 20px; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    width: 100%;
+  }
+  .freebie-download-btn:hover {
+    border-color: var(--purple); background: var(--purple-dim); color: var(--white);
+  }
+
+  /* Email gate */
+  .freebie-gate {
+    display: none;
+    flex-direction: column; gap: 12px;
+    margin-top: 12px;
+    padding: 20px;
+    background: var(--black-light);
+    border: 1px solid rgba(111,66,193,0.2);
+  }
+  .freebie-gate p {
+    font-size: 12px; color: var(--white-dim); line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+  .freebie-gate input {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(111,66,193,0.4);
+    color: var(--white); font-family: var(--font-body);
+    font-size: 14px; font-weight: 300;
+    padding: 12px 14px; outline: none; width: 100%;
+    transition: border-color 0.2s; -webkit-appearance: none;
+  }
+  .freebie-gate input:focus { border-color: var(--purple); }
+  .freebie-gate input::placeholder { color: rgba(255,255,255,0.2); }
+  .freebie-gate-submit {
+    background: var(--purple); color: var(--white);
+    font-family: var(--font-body); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 12px; border: none; cursor: pointer;
+    transition: background 0.2s;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  }
+  .freebie-gate-submit:hover { background: var(--purple-light); }
+
+  /* Featured freebie */
+  .freebie-card.featured {
+    background: var(--purple);
+    grid-column: span 1;
+  }
+  .freebie-card.featured:hover { background: #7d4fd4; }
+  .freebie-card.featured .freebie-type { color: rgba(255,255,255,0.7); }
+  .freebie-card.featured .freebie-title { color: var(--white); }
+  .freebie-card.featured .freebie-desc { color: rgba(255,255,255,0.75); }
+  .freebie-card.featured .freebie-download-btn {
+    border-color: rgba(255,255,255,0.4); color: var(--white);
+    background: rgba(255,255,255,0.1);
+  }
+  .freebie-card.featured .freebie-download-btn:hover {
+    background: rgba(255,255,255,0.2); border-color: white;
+  }
+  .freebie-card.featured .freebie-gate { background: rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.2); }
+  .freebie-card.featured .freebie-gate input { border-bottom-color: rgba(255,255,255,0.5); }
+
+  /* Email list section */
+  .email-section {
+    padding: 100px 0;
+    background: var(--black);
+  }
+  .email-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .email-body {
+    font-family: var(--font-serif);
+    font-size: 19px; line-height: 1.75;
+    color: var(--white-dim); margin-top: 24px;
+  }
+  .email-body strong { color: var(--white); }
+  .email-form { display: flex; flex-direction: column; gap: 16px; }
+  .email-form-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--purple); margin-bottom: 4px; display: block;
+  }
+  .email-form-input {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(111,66,193,0.4);
+    color: var(--white); font-family: var(--font-body);
+    font-size: 15px; font-weight: 300;
+    padding: 14px 16px; outline: none; width: 100%;
+    transition: border-color 0.2s; -webkit-appearance: none;
+  }
+  .email-form-input:focus { border-color: var(--purple); }
+  .email-form-input::placeholder { color: rgba(255,255,255,0.2); }
+  .email-form-submit {
+    background: var(--purple); color: var(--white);
+    font-family: var(--font-body); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 18px; border: none; cursor: pointer;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: background 0.2s; margin-top: 8px;
+  }
+  .email-form-submit:hover { background: var(--purple-light); }
+  .email-promise {
+    font-size: 11px; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.25); text-align: center;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .freebies-grid { grid-template-columns: 1fr 1fr; }
+    .email-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+  @media (max-width: 768px) {
+    .freebies-section { padding: 60px 0 80px; }
+    .freebies-grid { grid-template-columns: 1fr; }
+    .freebie-card { padding: 36px 28px; }
+    .freebie-card.featured { grid-column: span 1; }
+    .email-section { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="/index.html" class="nav-logo">TROY<span>.</span>COLE</a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/freebies.html">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="nav-cta">Get In Touch</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+    <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+    <li><a href="/blog/index.html" class="mobile-nav-link">Blog</a></li>
+    <li><a href="/freebies.html" class="mobile-nav-link">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="mobile-menu-cta mobile-nav-link">Get In Touch</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-geo"></div>
+  <div class="container">
+    <div class="page-hero-eyebrow">
+      <div class="page-hero-eyebrow-line"></div>
+      <span>Free Resources</span>
+    </div>
+    <h1 class="page-hero-title">TAKE THESE.<br><span style="color:var(--purple)">USE</span><br>THEM.</h1>
+    <p class="page-hero-sub">Guides, scripts, checklists, and tools you can use today — no strings attached. Just results.</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Free Download</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>No Strings Attached</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Use It Today</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Scripts &amp; Frameworks</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Real Results</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Built for Surgery Teams</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Free Download</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>No Strings Attached</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Use It Today</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Scripts &amp; Frameworks</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Real Results</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Built for Surgery Teams</span>
+  </div>
+</div>
+
+<!-- FREEBIES GRID -->
+<section class="freebies-section">
+  <div class="container">
+    <div class="freebies-intro reveal">
+      <div class="section-label"><div class="section-label-line"></div><span>Free Downloads</span></div>
+      <p class="freebies-intro-body">These are the frameworks and tools Troy has developed over 18 years of working with the best refractive surgery practices in the country. <strong>They work. Take them.</strong></p>
+    </div>
+
+    <div class="freebies-grid">
+
+      <!-- FEATURED -->
+      <div class="freebie-card featured reveal" data-download="/downloads/confident-conversations.pdf">
+        <div class="freebie-card-top-bar"></div>
+        <div class="freebie-type">⭐ Featured Guide</div>
+        <div class="freebie-icon">📞</div>
+        <div class="freebie-title">CONFIDENT CONVERSATIONS</div>
+        <p class="freebie-desc">The free guide to booking more consultations — a framework for how your phone team should open, qualify, and close every inbound call with confidence.</p>
+        <button class="freebie-download-btn">↓ Get the Free Guide</button>
+        <div class="freebie-gate">
+          <p>Enter your email and we'll send it immediately.</p>
+          <input type="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+        </div>
+      </div>
+
+      <!-- FREEBIE 2 -->
+      <div class="freebie-card reveal reveal-delay-1" data-download="/downloads/objection-scripts.pdf">
+        <div class="freebie-card-top-bar"></div>
+        <div class="freebie-type">PDF Script Guide</div>
+        <div class="freebie-icon">🛡️</div>
+        <div class="freebie-title">OBJECTION HANDLING SCRIPTS</div>
+        <p class="freebie-desc">Word-for-word responses to the 10 most common objections your team hears: "I need to think about it," "It's too expensive," "I want to get more quotes," and more.</p>
+        <button class="freebie-download-btn">↓ Download Scripts</button>
+        <div class="freebie-gate">
+          <p>Enter your email and we'll send it immediately.</p>
+          <input type="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+        </div>
+      </div>
+
+      <!-- FREEBIE 3 -->
+      <div class="freebie-card reveal reveal-delay-2" data-download="/downloads/phone-audit-checklist.pdf">
+        <div class="freebie-card-top-bar"></div>
+        <div class="freebie-type">Checklist</div>
+        <div class="freebie-icon">✅</div>
+        <div class="freebie-title">PHONE CALL AUDIT CHECKLIST</div>
+        <p class="freebie-desc">Score any inbound call across 14 dimensions. Use this to identify exactly where your team is losing patients — before, during, or after the pitch.</p>
+        <button class="freebie-download-btn">↓ Get the Checklist</button>
+        <div class="freebie-gate">
+          <p>Enter your email and we'll send it immediately.</p>
+          <input type="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+        </div>
+      </div>
+
+      <!-- FREEBIE 4 -->
+      <div class="freebie-card reveal" data-download="/downloads/consult-framework.pdf">
+        <div class="freebie-card-top-bar"></div>
+        <div class="freebie-type">Framework PDF</div>
+        <div class="freebie-icon">📋</div>
+        <div class="freebie-title">THE CONSULT CONVERSION FRAMEWORK</div>
+        <p class="freebie-desc">A step-by-step walkthrough of the ideal refractive consultation — what to say, when to say it, and how to guide the patient toward a decision without pressure.</p>
+        <button class="freebie-download-btn">↓ Download Framework</button>
+        <div class="freebie-gate">
+          <p>Enter your email and we'll send it immediately.</p>
+          <input type="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+        </div>
+      </div>
+
+      <!-- FREEBIE 5 -->
+      <div class="freebie-card reveal reveal-delay-1" data-download="/downloads/pricing-talk-track.pdf">
+        <div class="freebie-card-top-bar"></div>
+        <div class="freebie-type">Talk Track</div>
+        <div class="freebie-icon">💰</div>
+        <div class="freebie-title">THE PREMIUM PRICING TALK TRACK</div>
+        <p class="freebie-desc">Stop discounting. This talk track shows your team how to confidently communicate your pricing, justify your premium, and hold the line when prospects push back.</p>
+        <button class="freebie-download-btn">↓ Get the Talk Track</button>
+        <div class="freebie-gate">
+          <p>Enter your email and we'll send it immediately.</p>
+          <input type="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+        </div>
+      </div>
+
+      <!-- FREEBIE 6 -->
+      <div class="freebie-card reveal reveal-delay-2" data-download="/downloads/lead-rescue-guide.pdf">
+        <div class="freebie-card-top-bar"></div>
+        <div class="freebie-type">Strategy Guide</div>
+        <div class="freebie-icon">🔁</div>
+        <div class="freebie-title">LEAD RESCUE PLAYBOOK</div>
+        <p class="freebie-desc">A no-show or cancellation isn't a lost patient. This playbook shows you exactly how to re-engage cold leads and bring them back to book — weeks or months later.</p>
+        <button class="freebie-download-btn">↓ Get the Playbook</button>
+        <div class="freebie-gate">
+          <p>Enter your email and we'll send it immediately.</p>
+          <input type="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL LIST -->
+<section class="email-section">
+  <div class="container">
+    <div class="email-inner">
+      <div class="reveal">
+        <div class="section-label"><div class="section-label-line"></div><span>Private Email List</span></div>
+        <h2 class="section-title" style="margin-top:20px;">DON'T MISS<br><span class="outline">A THING.</span></h2>
+        <p class="email-body">Several times a week, Troy shares <strong>tips, strategies, and warnings</strong> with his private email list — things that don't go anywhere else. Tactics that are working right now. Trends you need to know. Hard truths most coaches won't say out loud.</p>
+        <p class="email-body" style="margin-top:16px;">No fluff. No spam. Just the kind of direct, useful content that's made Troy a trusted advisor to some of the best practices in the country.</p>
+      </div>
+      <div class="reveal">
+        <div class="email-form">
+          <div>
+            <label class="email-form-label">First Name</label>
+            <input class="email-form-input" type="text" placeholder="Troy">
+          </div>
+          <div>
+            <label class="email-form-label">Email Address</label>
+            <input class="email-form-input" type="email" placeholder="troy@yourpractice.com">
+          </div>
+          <div>
+            <label class="email-form-label">Practice Name</label>
+            <input class="email-form-input" type="text" placeholder="Your Eye Center">
+          </div>
+          <button class="email-form-submit">Join the List →</button>
+          <p class="email-promise">No spam. Unsubscribe anytime. Troy writes every email himself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2 class="cta-headline">WANT THE<br>FULL<br>SYSTEM,<br>NOT JUST<br>THE TOOLS?</h2>
+      <p class="cta-sub">The freebies are a taste. E3 is the whole meal. Let's talk about whether it's right for your practice.</p>
+    </div>
+    <div class="cta-right">
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Book a Strategy Call</p>
+      <div class="cta-form-row">
+        <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" placeholder="Troy"></div>
+        <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" placeholder="Cole"></div>
+      </div>
+      <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" placeholder="troy@yourpractice.com"></div>
+      <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" placeholder="Your Eye Center"></div>
+      <div class="cta-form-field"><label class="cta-form-label">Biggest leak in your funnel?</label><input class="cta-form-input" type="text" placeholder="Phones, consults, follow-up..."></div>
+      <button class="cta-form-submit">Send It →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TROY<span>.</span>COLE</div>
+        <p class="footer-tagline">Sales &amp; communications coach for world-class refractive and cataract surgery teams.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <div class="footer-links">
+          <a href="/services.html#e3">E3 Conversion Bootcamp</a>
+          <a href="/services.html#disc">DISC for Doctors</a>
+          <a href="/services.html#advisory">Marketing Advisory</a>
+          <a href="/services.html#reviewgrab">ReviewGrab</a>
+          <a href="/services.html#inboxmd">Inbox MD</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Content</div>
+        <div class="footer-links">
+          <a href="/blog/index.html">Blog</a>
+          <a href="/freebies.html">Free Resources</a>
+          <a href="https://troycole.com/podcast/" target="_blank">Podcast</a>
+          <a href="/about.html">About Troy</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+          <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+          <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+          <a href="https://substack.com/@troycole2" target="_blank">Substack</a>
+          <a href="/index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Troy Cole / LogiCole Consulting. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+        <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

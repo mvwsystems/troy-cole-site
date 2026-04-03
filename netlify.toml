@@ -1,0 +1,31 @@
+# netlify.toml
+# No build step needed — plain HTML/CSS/JS site
+
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog/index.html"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/about.html"
+  status = 301
+
+[[redirects]]
+  from = "/freebies"
+  to = "/freebies.html"
+  status = 301
+
+# Custom 404
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

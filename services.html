@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Troy Cole Sales Coaching for Refractive Surgery Teams</title>
+<meta name="description" content="E3 Conversion System Bootcamp, DISC for Doctors, Marketing Advisory, ReviewGrab, Inbox MD — programs built to fill surgery schedules and raise prices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  /* ── SERVICES PAGE STYLES ── */
+
+  .services-intro {
+    padding: 100px 0;
+    background: var(--black-mid);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .services-intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center; margin-top: 60px;
+  }
+  .services-intro-body {
+    font-family: var(--font-serif);
+    font-size: 20px; line-height: 1.75; color: var(--white-dim);
+  }
+  .services-intro-body strong { color: var(--white); }
+  .services-nav {
+    display: flex; flex-direction: column; gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .services-nav-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-decoration: none;
+    transition: padding-left 0.2s;
+    cursor: pointer;
+  }
+  .services-nav-item:hover { padding-left: 12px; }
+  .services-nav-item:hover .snav-num { color: var(--purple); opacity: 1; }
+  .services-nav-left { display: flex; align-items: center; gap: 20px; }
+  .snav-num {
+    font-family: var(--font-display);
+    font-size: 28px; color: var(--purple);
+    opacity: 0.3; min-width: 40px; transition: opacity 0.2s;
+  }
+  .snav-title { font-size: 16px; font-weight: 500; color: var(--white); }
+  .snav-arrow { font-size: 18px; color: var(--white-dim); }
+
+  /* Service Sections */
+  .service-block {
+    padding: 100px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .service-block:nth-child(even) { background: var(--black-mid); }
+  .service-block:nth-child(odd) { background: var(--black); }
+
+  .service-block-inner {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px; align-items: start;
+  }
+  .service-block-inner.reverse { direction: rtl; }
+  .service-block-inner.reverse > * { direction: ltr; }
+
+  .service-label-row {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 24px;
+  }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 64px; line-height: 1;
+    color: var(--purple); opacity: 0.2;
+  }
+  .service-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 0.95; letter-spacing: 0.02em;
+    color: var(--white);
+  }
+  .service-title span { color: var(--purple); }
+  .service-tagline {
+    font-family: var(--font-serif);
+    font-size: 20px; font-style: italic;
+    color: var(--white-dim); margin-bottom: 32px;
+    line-height: 1.6;
+  }
+  .service-body {
+    font-size: 15px; line-height: 1.8;
+    color: var(--white-dim); margin-bottom: 32px;
+  }
+  .service-body p { margin-bottom: 16px; }
+  .service-body strong { color: var(--white); }
+  .service-results {
+    display: flex; flex-direction: column; gap: 12px;
+    margin-bottom: 36px;
+  }
+  .service-result-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 14px; color: var(--white-dim); line-height: 1.5;
+  }
+  .service-result-item::before {
+    content: '→';
+    color: var(--purple); flex-shrink: 0; font-size: 14px;
+  }
+
+  /* Service card (right column) */
+  .service-card {
+    background: var(--black-light);
+    border: 1px solid rgba(111,66,193,0.15);
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--purple);
+  }
+  .service-card-title {
+    font-family: var(--font-display);
+    font-size: 18px; letter-spacing: 0.08em;
+    color: var(--purple); margin-bottom: 24px;
+  }
+  .service-card-list {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-bottom: 36px;
+  }
+  .service-card-list-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 14px; color: var(--white-dim); line-height: 1.5;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .service-card-list-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .service-card-list-item .check { color: var(--purple); flex-shrink: 0; }
+  .service-card-cta {
+    font-size: 11px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--white-dim);
+    margin-bottom: 16px; display: block;
+  }
+  .service-badge {
+    display: inline-block;
+    border: 1px solid rgba(111,66,193,0.3);
+    padding: 6px 14px;
+    font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--purple-light);
+    margin-bottom: 24px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-intro-grid { grid-template-columns: 1fr; gap: 48px; }
+    .service-block-inner { grid-template-columns: 1fr; gap: 48px; }
+    .service-block-inner.reverse { direction: ltr; }
+    .service-block { padding: 80px 0; }
+  }
+  @media (max-width: 768px) {
+    .services-intro { padding: 60px 0; }
+    .services-intro-body { font-size: 17px; }
+    .service-card { padding: 36px 24px; }
+    .service-title { font-size: clamp(32px, 9vw, 48px); }
+    .service-tagline { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="/index.html" class="nav-logo">TROY<span>.</span>COLE</a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/freebies.html">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="nav-cta">Get In Touch</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+    <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+    <li><a href="/blog/index.html" class="mobile-nav-link">Blog</a></li>
+    <li><a href="/freebies.html" class="mobile-nav-link">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="mobile-menu-cta mobile-nav-link">Get In Touch</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-geo"></div>
+  <div class="container">
+    <div class="page-hero-eyebrow">
+      <div class="page-hero-eyebrow-line"></div>
+      <span>Programs &amp; Services</span>
+    </div>
+    <h1 class="page-hero-title">WEAPONS<br><span style="color:var(--purple)">FOR YOUR</span><br>TEAM.</h1>
+    <p class="page-hero-sub">Every program is built for one purpose: turning your front desk and patient counselors into the most effective conversion team in your market.</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>E3 Conversion Bootcamp</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DISC for Doctors</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Marketing Advisory</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ReviewGrab</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Inbox MD</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>12-Week Bootcamp</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Live Coaching Calls</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>E3 Conversion Bootcamp</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DISC for Doctors</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Marketing Advisory</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>ReviewGrab</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Inbox MD</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>12-Week Bootcamp</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Live Coaching Calls</span>
+  </div>
+</div>
+
+<!-- INTRO + NAV -->
+<section class="services-intro">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>The Programs</span></div>
+    <div class="services-intro-grid">
+      <div>
+        <h2 class="section-title reveal">FIVE<br><span class="outline">PROGRAMS.</span><br>ONE<br>MISSION.</h2>
+      </div>
+      <div>
+        <p class="services-intro-body reveal">Every program Troy offers exists to solve a specific leak in your patient acquisition funnel — from the first phone call to the signed consent form to the 5-star review that drives your next patient.</p>
+        <div class="services-nav" style="margin-top:40px;">
+          <a href="#e3" class="services-nav-item reveal"><div class="services-nav-left"><div class="snav-num">01</div><div class="snav-title">E3 Conversion System Bootcamp</div></div><div class="snav-arrow">↓</div></a>
+          <a href="#disc" class="services-nav-item reveal reveal-delay-1"><div class="services-nav-left"><div class="snav-num">02</div><div class="snav-title">DISC for Doctors</div></div><div class="snav-arrow">↓</div></a>
+          <a href="#advisory" class="services-nav-item reveal reveal-delay-2"><div class="services-nav-left"><div class="snav-num">03</div><div class="snav-title">Marketing Advisory Program</div></div><div class="snav-arrow">↓</div></a>
+          <a href="#reviewgrab" class="services-nav-item reveal reveal-delay-2"><div class="services-nav-left"><div class="snav-num">04</div><div class="snav-title">ReviewGrab</div></div><div class="snav-arrow">↓</div></a>
+          <a href="#inboxmd" class="services-nav-item reveal reveal-delay-3"><div class="services-nav-left"><div class="snav-num">05</div><div class="snav-title">Inbox MD</div></div><div class="snav-arrow">↓</div></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- E3 -->
+<section class="service-block" id="e3">
+  <div class="container">
+    <div class="service-block-inner">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span>Flagship Program</span></div>
+        <div class="service-label-row reveal">
+          <div class="service-num">01</div>
+        </div>
+        <h2 class="service-title reveal">E3 CONVERSION<br>SYSTEM<br><span>BOOTCAMP</span></h2>
+        <p class="service-tagline reveal">12 weeks. Toolset, skillset, mindset. The most comprehensive sales training built for refractive and cataract surgery teams.</p>
+        <div class="service-body reveal">
+          <p>The E3 Bootcamp is Troy's flagship program — a 12-week intensive that works directly with your phone team and patient counselors to install the skills and belief systems needed to convert more leads into consults and more consults into surgeries.</p>
+          <p><strong>"Sales" is an interesting word in elective medicine.</strong> Some people love it, others hate it. Frankly, we don't care what you call it — sales, persuasion, influence, leadership. Ultimately you're helping someone make a decision. And doing that properly takes more than memorized scripts.</p>
+        </div>
+        <div class="service-results reveal">
+          <div class="service-result-item">Broke "daily scheduled consults" record 3 times in the first 4 weeks</div>
+          <div class="service-result-item">22–36% increase in average weekly booked consults</div>
+          <div class="service-result-item">10%+ increase in in-office conversion to surgery</div>
+          <div class="service-result-item">7-figure annual revenue impact for top clients</div>
+          <div class="service-result-item">Teams raising prices while maintaining or increasing conversions</div>
+        </div>
+        <a href="/index.html#contact" class="btn-primary reveal">Apply for E3 →</a>
+      </div>
+      <div class="reveal">
+        <div class="service-badge">12-Week Program</div>
+        <div class="service-card">
+          <div class="service-card-title">WHAT'S INCLUDED</div>
+          <div class="service-card-list">
+            <div class="service-card-list-item"><span class="check">✓</span> 12 weeks of live group coaching calls</div>
+            <div class="service-card-list-item"><span class="check">✓</span> 1-on-1 support call access throughout the program</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Real call/SMS/email submission for live review &amp; feedback</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Full E3 core materials library (1 year access)</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Objection-handling scripts for every common scenario</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Lead follow-up and re-engagement frameworks</div>
+            <div class="service-card-list-item"><span class="check">✓</span> In-consult conversion coaching for patient counselors</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Belief-building module (the real differentiator)</div>
+          </div>
+          <span class="service-card-cta">Ready to apply?</span>
+          <a href="/index.html#contact" class="btn-primary" style="display:block;text-align:center;">Book a Strategy Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISC -->
+<section class="service-block" id="disc">
+  <div class="container">
+    <div class="service-block-inner reverse">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span>Communication Training</span></div>
+        <div class="service-label-row reveal"><div class="service-num">02</div></div>
+        <h2 class="service-title reveal">DISC FOR<br><span>DOCTORS</span></h2>
+        <p class="service-tagline reveal">Know how to talk to anyone. Convert more patients because you understand how they think.</p>
+        <div class="service-body reveal">
+          <p>Not every prospect communicates the same way — and if your team is using the same script on every caller, they're leaving money on the table. The DISC Model of Human Behavior gives your team the ability to identify a prospect's communication style and adapt on the fly.</p>
+          <p><strong>Identify. Adapt. Convert.</strong> When you learn to communicate on your prospect's level — not yours — the "hard sell" disappears. Patients feel understood, not pressured.</p>
+        </div>
+        <div class="service-results reveal">
+          <div class="service-result-item">Instantly identify a patient's communication style from the first 60 seconds</div>
+          <div class="service-result-item">Adapt language, pace, and approach to match their decision-making style</div>
+          <div class="service-result-item">Reduce friction in consultations and follow-up conversations</div>
+          <div class="service-result-item">Improve team communication and internal culture</div>
+        </div>
+        <a href="/index.html#contact" class="btn-primary reveal">Learn More →</a>
+      </div>
+      <div class="reveal">
+        <div class="service-card">
+          <div class="service-card-title">THE FOUR STYLES</div>
+          <div class="service-card-list">
+            <div class="service-card-list-item"><span class="check">D</span> <strong style="color:var(--white);margin-right:8px;">Dominant</strong> Results-focused, direct, decisive. Hates small talk.</div>
+            <div class="service-card-list-item"><span class="check">I</span> <strong style="color:var(--white);margin-right:8px;">Influential</strong> People-focused, optimistic, enthusiastic. Buys on feeling.</div>
+            <div class="service-card-list-item"><span class="check">S</span> <strong style="color:var(--white);margin-right:8px;">Steady</strong> Relationship-focused, patient, loyal. Needs reassurance.</div>
+            <div class="service-card-list-item"><span class="check">C</span> <strong style="color:var(--white);margin-right:8px;">Conscientious</strong> Data-focused, analytical, cautious. Needs the facts.</div>
+          </div>
+          <span class="service-card-cta">Applicable to any elective procedure team</span>
+          <a href="/index.html#contact" class="btn-outline" style="display:block;text-align:center;">Get Details</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISORY -->
+<section class="service-block" id="advisory">
+  <div class="container">
+    <div class="service-block-inner">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span>Elite Tier</span></div>
+        <div class="service-label-row reveal"><div class="service-num">03</div></div>
+        <h2 class="service-title reveal">MARKETING<br><span>ADVISORY</span><br>PROGRAM</h2>
+        <p class="service-tagline reveal">For practices already in the top 10% who want every unfair advantage available.</p>
+        <div class="service-body reveal">
+          <p>There's a reason this program has a waiting list. The practices Troy works with at the advisory level are already performing at the highest tier in their markets. They come to him because they understand that brilliant strategic minds — not more ad spend — are what separate the top 10% from the top 1%.</p>
+          <p><strong>This is the most hands-on, most intimate engagement Troy offers.</strong> Strategy, positioning, marketing, sales systems — every dimension of your practice growth, with Troy in your corner.</p>
+        </div>
+        <div class="service-results reveal">
+          <div class="service-result-item">Ongoing strategic advisory — not a one-time program</div>
+          <div class="service-result-item">Practice positioning and competitive differentiation</div>
+          <div class="service-result-item">Marketing channel strategy and campaign oversight</div>
+          <div class="service-result-item">New initiative review and launch support</div>
+        </div>
+        <a href="/index.html#contact" class="btn-primary reveal">Join the Waitlist →</a>
+      </div>
+      <div class="reveal">
+        <div class="service-badge">By Application Only</div>
+        <div class="service-card">
+          <div class="service-card-title">WHO THIS IS FOR</div>
+          <div class="service-card-list">
+            <div class="service-card-list-item"><span class="check">✓</span> Established practices with strong existing volume</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Practices with internal marketing teams who need strategic oversight</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Multi-location groups expanding into new markets</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Surgeons who want to dominate their market, not just compete in it</div>
+          </div>
+          <span class="service-card-cta">Currently waitlisted — inquire for next opening</span>
+          <a href="/index.html#contact" class="btn-primary" style="display:block;text-align:center;">Request Information</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWGRAB -->
+<section class="service-block" id="reviewgrab">
+  <div class="container">
+    <div class="service-block-inner reverse">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span>Reputation Marketing</span></div>
+        <div class="service-label-row reveal"><div class="service-num">04</div></div>
+        <h2 class="service-title reveal">REVIEW<br><span>GRAB</span></h2>
+        <p class="service-tagline reveal">Turn happy patients into your most powerful marketing asset — automatically.</p>
+        <div class="service-body reveal">
+          <p>5-star reviews are not a nice-to-have. They're the currency of authority in elective medicine. When a prospective patient is choosing between you and three other practices, reviews are often the deciding factor — before they ever pick up the phone.</p>
+          <p><strong>ReviewGrab makes getting reviews systematic.</strong> No more hoping happy patients leave a review. No more chasing. A structured process that captures your best outcomes and puts them in front of the next patient who needs to see them.</p>
+        </div>
+        <a href="/index.html#contact" class="btn-primary reveal">Get ReviewGrab →</a>
+      </div>
+      <div class="reveal">
+        <div class="service-card">
+          <div class="service-card-title">WHAT REVIEWGRAB DOES</div>
+          <div class="service-card-list">
+            <div class="service-card-list-item"><span class="check">✓</span> Systematically captures reviews from satisfied patients</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Distributes reviews across key platforms (Google, Healthgrades, etc.)</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Builds your online authority and social proof</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Reduces new patient acquisition friction</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Integrates with your existing patient flow</div>
+          </div>
+          <a href="/index.html#contact" class="btn-outline" style="display:block;text-align:center;">Ask About ReviewGrab</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INBOX MD -->
+<section class="service-block" id="inboxmd">
+  <div class="container">
+    <div class="service-block-inner">
+      <div>
+        <div class="section-label reveal"><div class="section-label-line"></div><span>Lead Nurture</span></div>
+        <div class="service-label-row reveal"><div class="service-num">05</div></div>
+        <h2 class="service-title reveal">INBOX<br><span>MD</span></h2>
+        <p class="service-tagline reveal">Stay top of mind with non-converted leads. Recover patients who said "not yet."</p>
+        <div class="service-body reveal">
+          <p>Most practices treat a non-converted lead as a lost lead. They're not. They're a warm prospect who wasn't ready to decide — yet. <strong>Inbox MD</strong> keeps your practice in their inbox with weekly emails that educate, build trust, and keep you top of mind until they're ready to say yes.</p>
+          <p>When a prospect finally decides they're ready for LASIK or premium cataract surgery, you want your name to be the one that comes to mind first. That's what Inbox MD is built to do.</p>
+        </div>
+        <a href="/index.html#contact" class="btn-primary reveal">Get Inbox MD →</a>
+      </div>
+      <div class="reveal">
+        <div class="service-card">
+          <div class="service-card-title">HOW IT WORKS</div>
+          <div class="service-card-list">
+            <div class="service-card-list-item"><span class="check">✓</span> Weekly branded email sent to your non-converted leads</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Content educates, informs, and builds authority</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Keeps you top-of-mind for 6–18 months after initial inquiry</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Fully done-for-you — no writing, no scheduling, no management</div>
+            <div class="service-card-list-item"><span class="check">✓</span> Recaptures leads you would have otherwise permanently lost</div>
+          </div>
+          <a href="/index.html#contact" class="btn-outline" style="display:block;text-align:center;">Ask About Inbox MD</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2 class="cta-headline">DON'T<br>KNOW<br>WHERE<br>TO START?</h2>
+      <p class="cta-sub">Tell us where the leak is. We'll tell you which program plugs it fastest.</p>
+    </div>
+    <div class="cta-right">
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Get In Touch</p>
+      <div class="cta-form-row">
+        <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" placeholder="Troy"></div>
+        <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" placeholder="Cole"></div>
+      </div>
+      <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" placeholder="troy@yourpractice.com"></div>
+      <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" placeholder="Your Eye Center"></div>
+      <div class="cta-form-field"><label class="cta-form-label">Which program interests you?</label><input class="cta-form-input" type="text" placeholder="E3, DISC, Advisory, ReviewGrab, Inbox MD..."></div>
+      <button class="cta-form-submit">Send It →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TROY<span>.</span>COLE</div>
+        <p class="footer-tagline">Sales &amp; communications coach for world-class refractive and cataract surgery teams.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <div class="footer-links">
+          <a href="/services.html#e3">E3 Conversion Bootcamp</a>
+          <a href="/services.html#disc">DISC for Doctors</a>
+          <a href="/services.html#advisory">Marketing Advisory</a>
+          <a href="/services.html#reviewgrab">ReviewGrab</a>
+          <a href="/services.html#inboxmd">Inbox MD</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Content</div>
+        <div class="footer-links">
+          <a href="/blog/index.html">Blog</a>
+          <a href="/freebies.html">Free Resources</a>
+          <a href="https://troycole.com/podcast/" target="_blank">Podcast</a>
+          <a href="/about.html">About Troy</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+          <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+          <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+          <a href="https://substack.com/@troycole2" target="_blank">Substack</a>
+          <a href="/index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Troy Cole / LogiCole Consulting. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+        <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

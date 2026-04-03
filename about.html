@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Troy Cole — 18 Years in Refractive Sales</title>
+<meta name="description" content="Troy Cole has spent 18+ years helping refractive and cataract surgery practices book more consults, command premium prices, and fill their surgery schedules.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  /* ── ABOUT PAGE STYLES ── */
+
+  .about-bio {
+    padding: 100px 0;
+    background: var(--black-mid);
+  }
+  .about-bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .about-photo-block {
+    position: sticky; top: 100px;
+  }
+  .about-photo-frame {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0a14 100%);
+    border: 1px solid rgba(111,66,193,0.2);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-photo-frame::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 40% 40%, rgba(111,66,193,0.15) 0%, transparent 60%);
+  }
+  .about-photo-placeholder-text {
+    font-size: 11px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(111,66,193,0.4);
+    text-align: center; position: relative; z-index: 1;
+  }
+  .about-photo-caption {
+    margin-top: 16px;
+    font-family: var(--font-serif);
+    font-style: italic; font-size: 14px;
+    color: var(--white-dim); line-height: 1.5;
+  }
+
+  .about-copy {}
+  .about-copy h2 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 0.92; letter-spacing: 0.02em;
+    color: var(--white); margin-bottom: 32px;
+  }
+  .about-copy h2 span { color: var(--purple); }
+  .about-body {
+    font-family: var(--font-serif);
+    font-size: 19px; line-height: 1.8;
+    color: var(--white-dim);
+  }
+  .about-body p { margin-bottom: 24px; }
+  .about-body p:last-child { margin-bottom: 0; }
+  .about-body strong { color: var(--white); font-weight: 600; }
+  .about-body em { color: var(--purple-light); }
+
+  .about-pull {
+    background: var(--black-light);
+    border-left: 3px solid var(--purple);
+    padding: 28px 32px;
+    margin: 36px 0;
+    font-family: var(--font-display);
+    font-size: 26px; line-height: 1.2; letter-spacing: 0.03em;
+    color: var(--white);
+  }
+  .about-pull em { color: var(--purple); font-style: normal; }
+
+  /* Timeline */
+  .timeline-section {
+    padding: 100px 0;
+    background: var(--black);
+  }
+  .timeline {
+    margin-top: 60px;
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px; background: rgba(111,66,193,0.3);
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 48px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute; left: -36px; top: 8px;
+    width: 9px; height: 9px;
+    background: var(--purple);
+    border-radius: 50%;
+  }
+  .timeline-year {
+    font-family: var(--font-display);
+    font-size: 13px; letter-spacing: 0.2em;
+    color: var(--purple); margin-bottom: 8px;
+  }
+  .timeline-title {
+    font-size: 18px; font-weight: 500;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .timeline-body {
+    font-size: 14px; line-height: 1.7;
+    color: var(--white-dim); max-width: 600px;
+  }
+
+  /* Philosophy */
+  .philosophy-section {
+    padding: 100px 0;
+    background: var(--black-mid);
+  }
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+  .philosophy-card {
+    background: var(--black);
+    padding: 48px 40px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .philosophy-card:hover {
+    border-color: var(--purple);
+    background: var(--black-light);
+  }
+  .philosophy-card-num {
+    font-family: var(--font-display);
+    font-size: 52px; line-height: 1;
+    color: var(--purple); opacity: 0.2;
+    margin-bottom: 20px; transition: opacity 0.3s;
+  }
+  .philosophy-card:hover .philosophy-card-num { opacity: 0.6; }
+  .philosophy-card-title {
+    font-family: var(--font-display);
+    font-size: 24px; letter-spacing: 0.05em;
+    color: var(--white); margin-bottom: 16px;
+  }
+  .philosophy-card-body {
+    font-size: 14px; line-height: 1.7;
+    color: var(--white-dim);
+  }
+
+  /* Susan section */
+  .susan-section {
+    padding: 100px 0;
+    background: var(--black);
+  }
+  .susan-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .susan-stat {
+    font-family: var(--font-display);
+    font-size: 80px; line-height: 1;
+    color: var(--purple); letter-spacing: 0.02em;
+    margin-bottom: 8px;
+  }
+  .susan-stat-label {
+    font-size: 12px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--white-dim);
+    margin-bottom: 32px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .about-bio-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-photo-block { position: static; }
+    .about-photo-frame { aspect-ratio: 16/9; }
+    .philosophy-grid { grid-template-columns: 1fr 1fr; }
+    .susan-grid { grid-template-columns: 1fr; gap: 48px; }
+    .timeline-section { padding: 80px 0; }
+  }
+  @media (max-width: 768px) {
+    .about-bio { padding: 60px 0; }
+    .about-copy h2 { font-size: clamp(36px, 10vw, 56px); }
+    .about-body { font-size: 17px; }
+    .about-pull { font-size: 22px; padding: 24px; }
+    .philosophy-grid { grid-template-columns: 1fr; }
+    .philosophy-card { padding: 36px 28px; }
+    .philosophy-section { padding: 80px 0; }
+    .susan-section { padding: 80px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="/index.html" class="nav-logo">TROY<span>.</span>COLE</a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/freebies.html">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="nav-cta">Get In Touch</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+    <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+    <li><a href="/blog/index.html" class="mobile-nav-link">Blog</a></li>
+    <li><a href="/freebies.html" class="mobile-nav-link">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="mobile-menu-cta mobile-nav-link">Get In Touch</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-geo"></div>
+  <div class="container">
+    <div class="page-hero-eyebrow">
+      <div class="page-hero-eyebrow-line"></div>
+      <span>The Man Behind the Method</span>
+    </div>
+    <h1 class="page-hero-title">18 YEARS.<br><span style="color:var(--purple)">ONE</span><br>FOCUS.</h1>
+    <p class="page-hero-sub">Helping refractive and cataract surgery teams fill their schedules, raise their prices, and stop competing on cost.</p>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>LogiCole Consulting</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>E3 Conversion System</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>18+ Years in Elective Surgery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Hundreds of Practices Served</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DFW Based. Nationally Deployed.</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>LogiCole Consulting</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>E3 Conversion System</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>18+ Years in Elective Surgery</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Hundreds of Practices Served</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>DFW Based. Nationally Deployed.</span>
+  </div>
+</div>
+
+<!-- BIO -->
+<section class="about-bio">
+  <div class="container">
+    <div class="about-bio-grid">
+      <div class="about-photo-block reveal">
+        <div class="about-photo-frame">
+          <div class="about-photo-placeholder-text">Troy Cole<br>Photo Coming Soon</div>
+        </div>
+        <p class="about-photo-caption">Troy Cole — Sales &amp; Communications Coach for World-Class Refractive Surgery Teams. Based in DFW. Deployed nationally.</p>
+      </div>
+      <div class="about-copy">
+        <div class="section-label reveal"><div class="section-label-line"></div><span>The Story</span></div>
+        <h2 class="reveal">THE INDUSTRY <span>NEEDED</span> SOMEONE TO SAY IT.</h2>
+
+        <div class="about-body reveal">
+          <p>I got into elective surgery marketing almost two decades ago. And almost immediately, I saw the same problem playing out in practice after practice across the country: <strong>brilliant surgeons, exceptional outcomes, and a front desk that couldn't close a consultation to save their life.</strong></p>
+
+          <div class="about-pull">The surgery wasn't the problem.<br>The <em>sale</em> was the problem.</div>
+
+          <p>Not because the teams were lazy or incompetent. Because nobody had ever taught them how to sell <em>the right way</em> — how to communicate value, handle objections, and guide a prospect to a decision without resorting to pressure tactics or discounting their way to a booking.</p>
+
+          <p>So I built the framework. Tested it across hundreds of practices. Refined it call by call, consult by consult, surgery month by surgery month. What emerged became the <strong>E3 Conversion System</strong> — the most comprehensive sales training program built specifically for refractive and premium cataract surgery teams.</p>
+
+          <p>The results speak for themselves: practices booking <strong>22–36% more consults weekly</strong>. Teams breaking their own records within weeks of starting the program. Surgeons finally raising their prices — and watching their conversion rates go up, not down.</p>
+
+          <p>I'm Troy Cole. I run <strong>LogiCole Consulting</strong> out of DFW and work with practices across the country. If you're serious about making your team a revenue engine instead of a revenue leak, I'd like to talk.</p>
+        </div>
+
+        <div style="margin-top:40px;" class="reveal">
+          <a href="/index.html#contact" class="btn-primary">Book a Strategy Call</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>The Journey</span></div>
+    <h2 class="section-title reveal">BUILT OVER<br><span class="outline">DECADES.</span></h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-year">EARLY CAREER</div>
+        <div class="timeline-title">Entered Elective Surgery Marketing</div>
+        <div class="timeline-body">Started working with refractive surgery practices on marketing campaigns — media buying, content, promotions. Began to notice the real bottleneck wasn't leads. It was conversion.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-year">MID CAREER</div>
+        <div class="timeline-title">Developed the E3 Framework</div>
+        <div class="timeline-body">After working with dozens of practices and testing hundreds of approaches, the three-pillar system — Toolset, Skillset, Mindset — emerged as the definitive framework for surgical sales training.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-year">LOGICOLE CONSULTING</div>
+        <div class="timeline-title">Built a National Practice</div>
+        <div class="timeline-body">Launched LogiCole Consulting, serving world-class refractive and cataract practices across the U.S. Developed E3 Bootcamp, DISC for Doctors, ReviewGrab, Inbox MD, and the Marketing Advisory Program.</div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-3">
+        <div class="timeline-year">TODAY</div>
+        <div class="timeline-title">18+ Years. Hundreds of Practices.</div>
+        <div class="timeline-body">Still coaching. Still refining. Still obsessed with helping the best surgeons in the country get paid what they're worth. The E3 Bootcamp continues to produce record results for every cohort that comes through.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="container">
+    <div class="section-label reveal"><div class="section-label-line"></div><span>The Philosophy</span></div>
+    <h2 class="section-title reveal">HOW<br><span class="outline">WE</span><br>THINK.</h2>
+    <div class="philosophy-grid">
+      <div class="philosophy-card reveal">
+        <div class="philosophy-card-num">01</div>
+        <div class="philosophy-card-title">SELL THE RIGHT WAY</div>
+        <div class="philosophy-card-body">Apple has salespeople. BMW has salespeople. Ritz-Carlton has salespeople. Premium, respected brands all sell — they just do it the right way. That's what we teach.</div>
+      </div>
+      <div class="philosophy-card reveal reveal-delay-1">
+        <div class="philosophy-card-num">02</div>
+        <div class="philosophy-card-title">BELIEF IS THE FOUNDATION</div>
+        <div class="philosophy-card-body">If your team doesn't genuinely believe you're the best option in town, prospects can feel it. We install that belief — and everything else follows from there.</div>
+      </div>
+      <div class="philosophy-card reveal reveal-delay-2">
+        <div class="philosophy-card-num">03</div>
+        <div class="philosophy-card-title">PRICE IS NEVER THE PROBLEM</div>
+        <div class="philosophy-card-body">People don't skip a great restaurant because it costs $18 instead of $17. They skip it because they haven't been convinced it's worth it. That's a communication problem. We fix communication problems.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUSAN -->
+<section class="susan-section">
+  <div class="container">
+    <div class="susan-grid">
+      <div class="reveal">
+        <div class="section-label"><div class="section-label-line"></div><span>Meet Susan</span></div>
+        <h2 class="section-title" style="margin-top:20px;">THE CLOSER<br><span class="outline">BEHIND</span><br>THE SYSTEM.</h2>
+      </div>
+      <div class="reveal">
+        <div class="susan-stat">90%</div>
+        <div class="susan-stat-label">Conversion rate to surgery as a refractive scheduler</div>
+        <div class="about-body">
+          <p>Susan Cole's sales career started at Dallas's finest steakhouses, where she routinely sold $500 bottles of wine to customers she'd met only minutes earlier. She then entered refractive medicine — and maintained a <strong>90% conversion rate to surgery</strong>.</p>
+          <p>Her experience and instincts are woven into the E3 Conversion System. She works alongside Troy on select engagements, coaching teams on the phone skills and in-person presence that turn consultations into scheduled procedures.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2 class="cta-headline">HEARD<br>ENOUGH?<br>LET'S<br>TALK.</h2>
+      <p class="cta-sub">Limited openings. We work hands-on with every client. If you're serious, reach out now.</p>
+    </div>
+    <div class="cta-right">
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Get In Touch</p>
+      <div class="cta-form-row">
+        <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" placeholder="Troy"></div>
+        <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" placeholder="Cole"></div>
+      </div>
+      <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" placeholder="troy@yourpractice.com"></div>
+      <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" placeholder="Your Eye Center"></div>
+      <div class="cta-form-field"><label class="cta-form-label">What's your biggest challenge?</label><input class="cta-form-input" type="text" placeholder="Conversions, pricing, team morale..."></div>
+      <button class="cta-form-submit">Send It →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TROY<span>.</span>COLE</div>
+        <p class="footer-tagline">Sales &amp; communications coach for world-class refractive and cataract surgery teams.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <div class="footer-links">
+          <a href="/services.html#e3">E3 Conversion Bootcamp</a>
+          <a href="/services.html#disc">DISC for Doctors</a>
+          <a href="/services.html#advisory">Marketing Advisory</a>
+          <a href="/services.html#reviewgrab">ReviewGrab</a>
+          <a href="/services.html#inboxmd">Inbox MD</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Content</div>
+        <div class="footer-links">
+          <a href="/blog/index.html">Blog</a>
+          <a href="/freebies.html">Free Resources</a>
+          <a href="https://troycole.com/podcast/" target="_blank">Podcast</a>
+          <a href="/about.html">About Troy</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+          <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+          <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+          <a href="https://substack.com/@troycole2" target="_blank">Substack</a>
+          <a href="/index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Troy Cole / LogiCole Consulting. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+        <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>
