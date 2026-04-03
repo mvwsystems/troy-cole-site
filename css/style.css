@@ -344,7 +344,7 @@ nav.scrolled {
 }
 .cta-left::after {
   content: 'GET IN TOUCH';
-  position: absolute; right: 0; bottom: 0;
+  position: absolute; right: 0; bottom: -16px;
   font-family: var(--font-display);
   font-size: 120px; line-height: 1;
   color: rgba(0,0,0,0.15);
