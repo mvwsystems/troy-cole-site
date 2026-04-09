@@ -370,6 +370,9 @@ nav.scrolled {
   padding: 80px;
   display: flex; flex-direction: column; justify-content: center; gap: 20px;
 }
+.cta-right form { display: flex; flex-direction: column; gap: 20px; width: 100%; }
+.email-form form { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+.freebie-gate form { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 .cta-form-label {
   font-size: 11px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--purple);
