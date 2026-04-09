@@ -358,14 +358,17 @@
     </div>
     <div class="cta-right">
       <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Get In Touch</p>
-      <div class="cta-form-row">
-        <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" placeholder="Troy"></div>
-        <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" placeholder="Cole"></div>
-      </div>
-      <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" placeholder="troy@yourpractice.com"></div>
-      <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" placeholder="Your Eye Center"></div>
-      <div class="cta-form-field"><label class="cta-form-label">What's your biggest challenge?</label><input class="cta-form-input" type="text" placeholder="Conversions, pricing, team morale..."></div>
-      <button class="cta-form-submit">Send It →</button>
+      <form name="contact-about" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact-about">
+        <div class="cta-form-row">
+          <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" name="first-name" placeholder="Troy"></div>
+          <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" name="last-name" placeholder="Cole"></div>
+        </div>
+        <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" name="email" placeholder="troy@yourpractice.com"></div>
+        <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" name="practice-name" placeholder="Your Eye Center"></div>
+        <div class="cta-form-field"><label class="cta-form-label">What's your biggest challenge?</label><input class="cta-form-input" type="text" name="biggest-challenge" placeholder="Conversions, pricing, team morale..."></div>
+        <button type="submit" class="cta-form-submit">Send It →</button>
+      </form>
     </div>
   </div>
 </section>

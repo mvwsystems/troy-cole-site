@@ -271,9 +271,12 @@
         <p class="freebie-desc">The free guide to booking more consultations — a framework for how your phone team should open, qualify, and close every inbound call with confidence.</p>
         <button class="freebie-download-btn">↓ Get the Free Guide</button>
         <div class="freebie-gate">
-          <p>Enter your email and we'll send it immediately.</p>
-          <input type="email" placeholder="your@email.com">
-          <button class="freebie-gate-submit">Send It →</button>
+          <form name="freebie-confident-conversations" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="freebie-confident-conversations">
+            <p>Enter your email and we'll send it immediately.</p>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="freebie-gate-submit">Send It →</button>
+          </form>
         </div>
       </div>
 
@@ -286,9 +289,12 @@
         <p class="freebie-desc">Word-for-word responses to the 10 most common objections your team hears: "I need to think about it," "It's too expensive," "I want to get more quotes," and more.</p>
         <button class="freebie-download-btn">↓ Download Scripts</button>
         <div class="freebie-gate">
-          <p>Enter your email and we'll send it immediately.</p>
-          <input type="email" placeholder="your@email.com">
-          <button class="freebie-gate-submit">Send It →</button>
+          <form name="freebie-objection-scripts" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="freebie-objection-scripts">
+            <p>Enter your email and we'll send it immediately.</p>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="freebie-gate-submit">Send It →</button>
+          </form>
         </div>
       </div>
 
@@ -301,9 +307,12 @@
         <p class="freebie-desc">Score any inbound call across 14 dimensions. Use this to identify exactly where your team is losing patients — before, during, or after the pitch.</p>
         <button class="freebie-download-btn">↓ Get the Checklist</button>
         <div class="freebie-gate">
-          <p>Enter your email and we'll send it immediately.</p>
-          <input type="email" placeholder="your@email.com">
-          <button class="freebie-gate-submit">Send It →</button>
+          <form name="freebie-phone-audit-checklist" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="freebie-phone-audit-checklist">
+            <p>Enter your email and we'll send it immediately.</p>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="freebie-gate-submit">Send It →</button>
+          </form>
         </div>
       </div>
 
@@ -316,9 +325,12 @@
         <p class="freebie-desc">A step-by-step walkthrough of the ideal refractive consultation — what to say, when to say it, and how to guide the patient toward a decision without pressure.</p>
         <button class="freebie-download-btn">↓ Download Framework</button>
         <div class="freebie-gate">
-          <p>Enter your email and we'll send it immediately.</p>
-          <input type="email" placeholder="your@email.com">
-          <button class="freebie-gate-submit">Send It →</button>
+          <form name="freebie-consult-framework" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="freebie-consult-framework">
+            <p>Enter your email and we'll send it immediately.</p>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="freebie-gate-submit">Send It →</button>
+          </form>
         </div>
       </div>
 
@@ -331,9 +343,12 @@
         <p class="freebie-desc">Stop discounting. This talk track shows your team how to confidently communicate your pricing, justify your premium, and hold the line when prospects push back.</p>
         <button class="freebie-download-btn">↓ Get the Talk Track</button>
         <div class="freebie-gate">
-          <p>Enter your email and we'll send it immediately.</p>
-          <input type="email" placeholder="your@email.com">
-          <button class="freebie-gate-submit">Send It →</button>
+          <form name="freebie-pricing-talk-track" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="freebie-pricing-talk-track">
+            <p>Enter your email and we'll send it immediately.</p>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="freebie-gate-submit">Send It →</button>
+          </form>
         </div>
       </div>
 
@@ -346,9 +361,12 @@
         <p class="freebie-desc">A no-show or cancellation isn't a lost patient. This playbook shows you exactly how to re-engage cold leads and bring them back to book — weeks or months later.</p>
         <button class="freebie-download-btn">↓ Get the Playbook</button>
         <div class="freebie-gate">
-          <p>Enter your email and we'll send it immediately.</p>
-          <input type="email" placeholder="your@email.com">
-          <button class="freebie-gate-submit">Send It →</button>
+          <form name="freebie-lead-rescue-playbook" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="freebie-lead-rescue-playbook">
+            <p>Enter your email and we'll send it immediately.</p>
+            <input type="email" name="email" placeholder="your@email.com">
+            <button type="submit" class="freebie-gate-submit">Send It →</button>
+          </form>
         </div>
       </div>
 
@@ -368,20 +386,23 @@
       </div>
       <div class="reveal">
         <div class="email-form">
-          <div>
-            <label class="email-form-label">First Name</label>
-            <input class="email-form-input" type="text" placeholder="Troy">
-          </div>
-          <div>
-            <label class="email-form-label">Email Address</label>
-            <input class="email-form-input" type="email" placeholder="troy@yourpractice.com">
-          </div>
-          <div>
-            <label class="email-form-label">Practice Name</label>
-            <input class="email-form-input" type="text" placeholder="Your Eye Center">
-          </div>
-          <button class="email-form-submit">Join the List →</button>
-          <p class="email-promise">No spam. Unsubscribe anytime. Troy writes every email himself.</p>
+          <form name="email-list" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="email-list">
+            <div>
+              <label class="email-form-label">First Name</label>
+              <input class="email-form-input" type="text" name="first-name" placeholder="Troy">
+            </div>
+            <div>
+              <label class="email-form-label">Email Address</label>
+              <input class="email-form-input" type="email" name="email" placeholder="troy@yourpractice.com">
+            </div>
+            <div>
+              <label class="email-form-label">Practice Name</label>
+              <input class="email-form-input" type="text" name="practice-name" placeholder="Your Eye Center">
+            </div>
+            <button type="submit" class="email-form-submit">Join the List →</button>
+            <p class="email-promise">No spam. Unsubscribe anytime. Troy writes every email himself.</p>
+          </form>
         </div>
       </div>
     </div>
@@ -397,14 +418,17 @@
     </div>
     <div class="cta-right">
       <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Book a Strategy Call</p>
-      <div class="cta-form-row">
-        <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" placeholder="Troy"></div>
-        <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" placeholder="Cole"></div>
-      </div>
-      <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" placeholder="troy@yourpractice.com"></div>
-      <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" placeholder="Your Eye Center"></div>
-      <div class="cta-form-field"><label class="cta-form-label">Biggest leak in your funnel?</label><input class="cta-form-input" type="text" placeholder="Phones, consults, follow-up..."></div>
-      <button class="cta-form-submit">Send It →</button>
+      <form name="contact-freebies" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact-freebies">
+        <div class="cta-form-row">
+          <div class="cta-form-field"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" name="first-name" placeholder="Troy"></div>
+          <div class="cta-form-field"><label class="cta-form-label">Last Name</label><input class="cta-form-input" type="text" name="last-name" placeholder="Cole"></div>
+        </div>
+        <div class="cta-form-field"><label class="cta-form-label">Email</label><input class="cta-form-input" type="email" name="email" placeholder="troy@yourpractice.com"></div>
+        <div class="cta-form-field"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" name="practice-name" placeholder="Your Eye Center"></div>
+        <div class="cta-form-field"><label class="cta-form-label">Biggest leak in your funnel?</label><input class="cta-form-input" type="text" name="biggest-challenge" placeholder="Phones, consults, follow-up..."></div>
+        <button type="submit" class="cta-form-submit">Send It →</button>
+      </form>
     </div>
   </div>
 </section>

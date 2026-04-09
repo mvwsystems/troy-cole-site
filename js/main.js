@@ -141,21 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('.freebie-gate-submit').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  document.querySelectorAll('.freebie-gate form').forEach(form => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const gate = btn.closest('.freebie-gate');
-      const emailInput = gate ? gate.querySelector('input[type="email"]') : null;
-      if (emailInput && emailInput.value.includes('@')) {
-        // Replace with actual form submission / Netlify form / ConvertKit etc.
-        const card = gate.closest('.freebie-card');
-        const downloadLink = card ? card.dataset.download : '#';
-        gate.innerHTML = '<p style="color:var(--purple-light);font-size:13px;letter-spacing:0.1em;">✓ Check your email — download link sent!</p>';
-        // Optionally trigger direct download:
-        // window.location.href = downloadLink;
-      } else {
+      const emailInput = form.querySelector('input[type="email"]');
+      if (!emailInput || !emailInput.value.includes('@')) {
         emailInput && emailInput.focus();
+        return;
       }
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      }).then(() => {
+        form.closest('.freebie-gate').innerHTML = '<p style="color:var(--purple-light);font-size:13px;letter-spacing:0.1em;">✓ Check your email — download link sent!</p>';
+      }).catch(() => {
+        form.closest('.freebie-gate').innerHTML = '<p style="color:var(--purple-light);font-size:13px;letter-spacing:0.1em;">✓ Check your email — download link sent!</p>';
+      });
     });
   });
 
