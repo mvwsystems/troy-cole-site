@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Troy Cole Sales Coaching for Refractive Surgery</title>
+<meta name="description" content="Articles, tactics, and hard truths for refractive and cataract surgery teams from Troy Cole.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .blog-section {
+    padding: 100px 0 120px;
+    background: var(--black-mid);
+    min-height: 60vh;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+  }
+  .blog-card {
+    background: var(--black);
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    text-decoration: none;
+  }
+  .blog-card:hover { background: var(--black-light); }
+  .blog-card-top-bar {
+    height: 3px; background: var(--purple);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .blog-card:hover .blog-card-top-bar { transform: scaleX(1); }
+  .blog-card-image {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+  }
+  .blog-card-image-placeholder {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d0a14 100%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blog-card-image-placeholder span {
+    font-family: var(--font-display);
+    font-size: 48px; color: rgba(111,66,193,0.2);
+  }
+  .blog-card-body {
+    padding: 28px; flex: 1; display: flex; flex-direction: column;
+  }
+  .blog-card-date {
+    font-size: 10px; letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.3); text-transform: uppercase;
+    margin-bottom: 12px; display: block;
+  }
+  .blog-card-title {
+    font-family: var(--font-display);
+    font-size: 22px; letter-spacing: 0.03em; line-height: 1.1;
+    color: var(--white); margin-bottom: 12px; flex: 1;
+  }
+  .blog-card-excerpt {
+    font-size: 13px; line-height: 1.65;
+    color: var(--white-dim); margin-bottom: 20px;
+  }
+  .blog-card-read {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--purple-light); transition: gap 0.2s;
+  }
+  .blog-card:hover .blog-card-read { gap: 14px; }
+  .blog-card.is-featured { grid-column: span 2; }
+  .blog-card.is-featured .blog-card-title { font-size: 30px; }
+  .blog-card.is-featured .blog-card-body { padding: 36px; }
+
+  /* Loading */
+  .blog-loading {
+    grid-column: span 3;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 80px 0; gap: 20px;
+  }
+  .blog-loading-spinner {
+    width: 40px; height: 40px;
+    border: 2px solid rgba(111,66,193,0.2);
+    border-top-color: var(--purple);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .blog-loading-text {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--white-dim);
+  }
+
+  /* Error */
+  .blog-error {
+    grid-column: span 3;
+    padding: 60px 40px; background: var(--black);
+    border-left: 3px solid var(--purple); text-align: center;
+  }
+  .blog-error p {
+    font-family: var(--font-serif);
+    font-size: 18px; color: var(--white-dim);
+    font-style: italic; margin-bottom: 20px;
+  }
+
+  /* Substack CTA bar */
+  .substack-bar {
+    background: var(--black);
+    border-top: 1px solid rgba(111,66,193,0.15);
+    padding: 32px 0; text-align: center; margin-top: 2px;
+  }
+  .substack-bar p {
+    font-size: 13px; color: var(--white-dim);
+    margin-bottom: 16px; letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: 1fr 1fr; }
+    .blog-card.is-featured { grid-column: span 2; }
+    .blog-loading, .blog-error { grid-column: span 2; }
+  }
+  @media (max-width: 768px) {
+    .blog-section { padding: 60px 0 80px; }
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-card.is-featured { grid-column: span 1; }
+    .blog-card.is-featured .blog-card-title { font-size: 24px; }
+    .blog-card.is-featured .blog-card-body { padding: 28px 24px; }
+    .blog-loading, .blog-error { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="/index.html" class="nav-logo">TROY<span>.</span>COLE</a>
+  <ul class="nav-links">
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/blog/index.html">Blog</a></li>
+    <li><a href="/freebies.html">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="nav-cta">Get In Touch</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="mobile-menu-links">
+    <li><a href="/about.html" class="mobile-nav-link">About</a></li>
+    <li><a href="/services.html" class="mobile-nav-link">Services</a></li>
+    <li><a href="/blog/index.html" class="mobile-nav-link">Blog</a></li>
+    <li><a href="/freebies.html" class="mobile-nav-link">Free Resources</a></li>
+  </ul>
+  <a href="/index.html#contact" class="mobile-menu-cta mobile-nav-link">Get In Touch</a>
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-geo"></div>
+  <div class="container">
+    <div class="page-hero-eyebrow">
+      <div class="page-hero-eyebrow-line"></div>
+      <span>Articles &amp; Insights</span>
+    </div>
+    <h1 class="page-hero-title">READ YOUR<br>WAY TO<br><span style="color:var(--purple)">WEALTH.</span></h1>
+    <p class="page-hero-sub">Tactics, observations, and hard truths for refractive surgeons who want to charge more, convert more, and dominate their market.</p>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Sales Tactics</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Marketing Strategy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Conversion Psychology</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pricing &amp; Positioning</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Team Leadership</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Practice Growth</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Sales Tactics</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Marketing Strategy</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Conversion Psychology</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Pricing &amp; Positioning</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Team Leadership</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Practice Growth</span>
+  </div>
+</div>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="section-label-line"></div>
+      <span>Latest from Troy</span>
+    </div>
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-loading">
+        <div class="blog-loading-spinner"></div>
+        <div class="blog-loading-text">Loading latest posts...</div>
+      </div>
+    </div>
+    <div class="substack-bar" id="substackBar" style="display:none;">
+      <p>Read more of Troy's writing on Substack</p>
+      <a href="https://troycole.substack.com" target="_blank" class="btn-outline">View All on Substack →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2 class="cta-headline">WANT<br>MORE<br>DIRECT<br>TO YOUR<br>INBOX?</h2>
+      <p class="cta-sub">Join Troy's private email list. No fluff. Just the stuff that moves the needle.</p>
+    </div>
+    <div class="cta-right">
+      <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--purple);margin-bottom:8px;">Join the List</p>
+      <div class="cta-form-field" style="margin-bottom:16px;"><label class="cta-form-label">First Name</label><input class="cta-form-input" type="text" placeholder="Troy"></div>
+      <div class="cta-form-field" style="margin-bottom:16px;"><label class="cta-form-label">Email Address</label><input class="cta-form-input" type="email" placeholder="troy@yourpractice.com"></div>
+      <div class="cta-form-field" style="margin-bottom:16px;"><label class="cta-form-label">Practice Name</label><input class="cta-form-input" type="text" placeholder="Your Eye Center"></div>
+      <button class="cta-form-submit">Subscribe →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand-name">TROY<span>.</span>COLE</div>
+        <p class="footer-tagline">Sales &amp; communications coach for world-class refractive and cataract surgery teams.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Programs</div>
+        <div class="footer-links">
+          <a href="/services.html#e3">E3 Conversion Bootcamp</a>
+          <a href="/services.html#disc">DISC for Doctors</a>
+          <a href="/services.html#advisory">Marketing Advisory</a>
+          <a href="/services.html#reviewgrab">ReviewGrab</a>
+          <a href="/services.html#inboxmd">Inbox MD</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Content</div>
+        <div class="footer-links">
+          <a href="/blog/index.html">Blog</a>
+          <a href="/freebies.html">Free Resources</a>
+          <a href="https://troycole.substack.com" target="_blank">Substack</a>
+          <a href="/about.html">About Troy</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+          <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+          <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+          <a href="https://substack.com/@troycole2" target="_blank">Substack</a>
+          <a href="/index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Troy Cole / LogiCole Consulting. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://linkedin.com/in/troy-cole-18ab515/" target="_blank">LinkedIn</a>
+        <a href="https://instagram.com/tcoletx" target="_blank">Instagram</a>
+        <a href="https://facebook.com/tcoletx" target="_blank">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+<script>
+  /* ============================================================
+     SUBSTACK RSS FEED LOADER
+     Fetches troycole.substack.com/feed via rss2json.com (CORS proxy)
+     Renders posts as styled blog cards matching the Troy Cole design system.
+     Posts link directly to Substack — no separate post pages needed.
+  ============================================================ */
+
+  const RSS_URL  = 'https://troycole.substack.com/feed';
+  const API_URL  = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=12`;
+  const grid     = document.getElementById('blogGrid');
+  const ssBar    = document.getElementById('substackBar');
+
+  function formatDate(str) {
+    try {
+      return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric'
+      }).format(new Date(str));
+    } catch { return ''; }
+  }
+
+  function stripHtml(html) {
+    const d = document.createElement('div');
+    d.innerHTML = html;
+    return d.textContent || d.innerText || '';
+  }
+
+  function truncate(str, max) {
+    if (!str || str.length <= max) return str;
+    return str.slice(0, max).replace(/\s+\S*$/, '') + '…';
+  }
+
+  function getImage(item) {
+    if (item.thumbnail && item.thumbnail.startsWith('http')) return item.thumbnail;
+    if (item.enclosure && item.enclosure.link)               return item.enclosure.link;
+    const m = (item.content || '').match(/<img[^>]+src=["']([^"']+)["']/);
+    if (m) return m[1];
+    return null;
+  }
+
+  function renderCard(item, i) {
+    const featured = i === 0;
+    const img      = getImage(item);
+    const title    = item.title || 'Untitled';
+    const date     = formatDate(item.pubDate);
+    const excerpt  = truncate(stripHtml(item.description || item.content || ''), 140);
+    const delay    = i > 0 ? ` reveal-delay-${Math.min(i % 3 + 1, 3)}` : '';
+
+    const imgHtml = img
+      ? `<img class="blog-card-image" src="${img}" alt="" loading="lazy">`
+      : `<div class="blog-card-image-placeholder"><span>TC</span></div>`;
+
+    return `
+      <a href="${item.link}" target="_blank" rel="noopener"
+         class="blog-card${featured ? ' is-featured' : ''} reveal${delay}">
+        <div class="blog-card-top-bar"></div>
+        ${imgHtml}
+        <div class="blog-card-body">
+          <span class="blog-card-date">${date}</span>
+          <div class="blog-card-title">${title}</div>
+          ${excerpt ? `<p class="blog-card-excerpt">${excerpt}</p>` : ''}
+          <span class="blog-card-read">Read on Substack →</span>
+        </div>
+      </a>`;
+  }
+
+  async function loadFeed() {
+    try {
+      const res  = await fetch(API_URL);
+      if (!res.ok) throw new Error('fetch failed');
+      const data = await res.json();
+      if (data.status !== 'ok' || !data.items?.length) throw new Error('no items');
+
+      grid.innerHTML = data.items.map(renderCard).join('');
+      ssBar.style.display = 'block';
+
+      // Re-trigger scroll reveal on dynamically added cards
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    } catch (err) {
+      console.error('RSS load error:', err);
+      grid.innerHTML = `
+        <div class="blog-error">
+          <p>Couldn't load the latest posts right now.</p>
+          <a href="https://troycole.substack.com" target="_blank" class="btn-outline">
+            Read directly on Substack →
+          </a>
+        </div>`;
+    }
+  }
+
+  loadFeed();
+</script>
+</body>
+</html>
