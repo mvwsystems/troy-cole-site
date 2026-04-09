@@ -134,11 +134,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.freebie-download-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
+      e.preventDefault();
       const card = btn.closest('.freebie-card');
       const gate = card ? card.querySelector('.freebie-gate') : null;
       if (gate) {
-        e.preventDefault();
-        gate.style.display = gate.style.display === 'flex' ? 'none' : 'flex';
+        const isOpen = gate.style.display === 'flex';
+        gate.style.display = isOpen ? 'none' : 'flex';
+        gate.style.flexDirection = 'column';
+        gate.style.gap = '12px';
       }
     });
   });
