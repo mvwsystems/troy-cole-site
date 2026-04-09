@@ -277,15 +277,19 @@
 <script>
   /* ============================================================
      SUBSTACK RSS FEED LOADER
-     Fetches troycole.substack.com/feed via rss2json.com (CORS proxy)
-     Renders posts as styled blog cards matching the Troy Cole design system.
-     Posts link directly to Substack — no separate post pages needed.
+     Uses allorigins.win as a no-key CORS proxy, then parses
+     the XML natively in the browser. Falls back to a second
+     proxy (corsproxy.io) if the first fails.
   ============================================================ */
 
-  const RSS_URL  = 'https://troycole.substack.com/feed';
-  const API_URL  = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}&count=12`;
-  const grid     = document.getElementById('blogGrid');
-  const ssBar    = document.getElementById('substackBar');
+  const RSS_URL = 'https://troycole.substack.com/feed';
+  const PROXIES = [
+    url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.io/?${encodeURIComponent(url)}`
+  ];
+
+  const grid  = document.getElementById('blogGrid');
+  const ssBar = document.getElementById('substackBar');
 
   function formatDate(str) {
     try {
@@ -295,10 +299,29 @@
     } catch { return ''; }
   }
 
+  function getText(el, tag) {
+    const node = el.querySelector(tag);
+    return node ? (node.textContent || '').trim() : '';
+  }
+
+  function getImage(item) {
+    // Try <media:content> or <media:thumbnail>
+    const media = item.querySelector('content, thumbnail');
+    if (media && media.getAttribute('url')) return media.getAttribute('url');
+    // Try <enclosure>
+    const enc = item.querySelector('enclosure');
+    if (enc && enc.getAttribute('url')) return enc.getAttribute('url');
+    // Try first <img> in description
+    const desc = getText(item, 'description');
+    const m = desc.match(/<img[^>]+src=["']([^"']+)["']/);
+    if (m) return m[1];
+    return null;
+  }
+
   function stripHtml(html) {
     const d = document.createElement('div');
     d.innerHTML = html;
-    return d.textContent || d.innerText || '';
+    return (d.textContent || d.innerText || '').replace(/\s+/g, ' ').trim();
   }
 
   function truncate(str, max) {
@@ -306,28 +329,21 @@
     return str.slice(0, max).replace(/\s+\S*$/, '') + '…';
   }
 
-  function getImage(item) {
-    if (item.thumbnail && item.thumbnail.startsWith('http')) return item.thumbnail;
-    if (item.enclosure && item.enclosure.link)               return item.enclosure.link;
-    const m = (item.content || '').match(/<img[^>]+src=["']([^"']+)["']/);
-    if (m) return m[1];
-    return null;
-  }
-
   function renderCard(item, i) {
     const featured = i === 0;
+    const title    = getText(item, 'title') || 'Untitled';
+    const link     = getText(item, 'link') || item.querySelector('link')?.getAttribute('href') || '#';
+    const date     = formatDate(getText(item, 'pubDate'));
+    const excerpt  = truncate(stripHtml(getText(item, 'description')), 140);
     const img      = getImage(item);
-    const title    = item.title || 'Untitled';
-    const date     = formatDate(item.pubDate);
-    const excerpt  = truncate(stripHtml(item.description || item.content || ''), 140);
-    const delay    = i > 0 ? ` reveal-delay-${Math.min(i % 3 + 1, 3)}` : '';
+    const delay    = i > 0 ? ` reveal-delay-${Math.min((i % 3) + 1, 3)}` : '';
 
     const imgHtml = img
       ? `<img class="blog-card-image" src="${img}" alt="" loading="lazy">`
       : `<div class="blog-card-image-placeholder"><span>TC</span></div>`;
 
     return `
-      <a href="${item.link}" target="_blank" rel="noopener"
+      <a href="${link}" target="_blank" rel="noopener"
          class="blog-card${featured ? ' is-featured' : ''} reveal${delay}">
         <div class="blog-card-top-bar"></div>
         ${imgHtml}
@@ -340,34 +356,54 @@
       </a>`;
   }
 
+  function parseAndRender(xmlText) {
+    const parser = new DOMParser();
+    const doc    = parser.parseFromString(xmlText, 'text/xml');
+    const items  = Array.from(doc.querySelectorAll('item')).slice(0, 12);
+    if (!items.length) throw new Error('no items in feed');
+
+    grid.innerHTML = items.map(renderCard).join('');
+    ssBar.style.display = 'block';
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  function showError() {
+    grid.innerHTML = `
+      <div class="blog-error">
+        <p>Couldn't load the latest posts right now.</p>
+        <a href="https://troycole.substack.com" target="_blank" class="btn-outline">
+          Read directly on Substack →
+        </a>
+      </div>`;
+  }
+
+  async function tryProxy(proxyFn) {
+    const res = await fetch(proxyFn(RSS_URL));
+    if (!res.ok) throw new Error('proxy fetch failed');
+    const data = await res.json();
+    // allorigins wraps in { contents: '...' }
+    const xml = data.contents || data;
+    if (typeof xml !== 'string') throw new Error('unexpected proxy response');
+    return xml;
+  }
+
   async function loadFeed() {
-    try {
-      const res  = await fetch(API_URL);
-      if (!res.ok) throw new Error('fetch failed');
-      const data = await res.json();
-      if (data.status !== 'ok' || !data.items?.length) throw new Error('no items');
-
-      grid.innerHTML = data.items.map(renderCard).join('');
-      ssBar.style.display = 'block';
-
-      // Re-trigger scroll reveal on dynamically added cards
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-        });
-      }, { threshold: 0.1 });
-      grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    } catch (err) {
-      console.error('RSS load error:', err);
-      grid.innerHTML = `
-        <div class="blog-error">
-          <p>Couldn't load the latest posts right now.</p>
-          <a href="https://troycole.substack.com" target="_blank" class="btn-outline">
-            Read directly on Substack →
-          </a>
-        </div>`;
+    for (const proxyFn of PROXIES) {
+      try {
+        const xml = await tryProxy(proxyFn);
+        parseAndRender(xml);
+        return;
+      } catch (err) {
+        console.warn('Proxy attempt failed, trying next…', err);
+      }
     }
+    showError();
   }
 
   loadFeed();
