@@ -128,6 +128,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ----------------------------------------------------------
+     CONTACT FORMS — Netlify AJAX (no page navigation on submit)
+  ---------------------------------------------------------- */
+  document.querySelectorAll('form[data-netlify="true"]:not([name^="freebie"]):not([name="email-list"])').forEach(form => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString()
+        });
+        form.innerHTML = '<p style="color:var(--purple-light);font-size:14px;letter-spacing:0.1em;line-height:1.6;">✓ Got it — we\'ll be in touch soon.</p>';
+      } catch {
+        if (btn) { btn.textContent = 'Send It →'; btn.disabled = false; }
+      }
+    });
+  });
+
+  /* ----------------------------------------------------------
      FREEBIES: KIT (CONVERTKIT) EMAIL GATE (used on freebies.html)
   ---------------------------------------------------------- */
   const KIT_API_KEY = 'r_N6cRcFv0R3rZnkU5gIIw';
