@@ -37,6 +37,11 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  .cursor, .cursor-ring { display: none; }
+}
+
 /* ============================================================
    CUSTOM CURSOR
 ============================================================ */
