@@ -128,8 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ----------------------------------------------------------
-     FREEBIES: EMAIL GATE (used on freebies.html)
+     FREEBIES: KIT (CONVERTKIT) EMAIL GATE (used on freebies.html)
   ---------------------------------------------------------- */
+  const KIT_API_KEY = 'r_N6cRcFv0R3rZnkU5gIIw';
+
   document.querySelectorAll('.freebie-download-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const card = btn.closest('.freebie-card');
@@ -141,23 +143,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('.freebie-gate form').forEach(form => {
-    form.addEventListener('submit', (e) => {
+  document.querySelectorAll('.freebie-card').forEach(card => {
+    const btn = card.querySelector('.freebie-gate-submit');
+    if (!btn) return;
+
+    btn.addEventListener('click', async (e) => {
       e.preventDefault();
-      const emailInput = form.querySelector('input[type="email"]');
-      if (!emailInput || !emailInput.value.includes('@')) {
+      const gate = card.querySelector('.freebie-gate');
+      const firstNameInput = gate.querySelector('input[name="first_name"]');
+      const emailInput = gate.querySelector('input[name="email"]');
+      const errorEl = gate.querySelector('.freebie-gate-error');
+      const formId = card.dataset.kitFormId;
+      const tag = parseInt(card.dataset.kitTag, 10);
+      const redirect = card.dataset.redirect;
+
+      const firstName = firstNameInput ? firstNameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+
+      if (!email.includes('@')) {
         emailInput && emailInput.focus();
         return;
       }
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
-      }).then(() => {
-        form.closest('.freebie-gate').innerHTML = '<p style="color:var(--purple-light);font-size:13px;letter-spacing:0.1em;">✓ Check your email — download link sent!</p>';
-      }).catch(() => {
-        form.closest('.freebie-gate').innerHTML = '<p style="color:var(--purple-light);font-size:13px;letter-spacing:0.1em;">✓ Check your email — download link sent!</p>';
-      });
+
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      if (errorEl) errorEl.style.display = 'none';
+
+      try {
+        const res = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            api_key: KIT_API_KEY,
+            first_name: firstName,
+            email: email,
+            tags: [tag]
+          })
+        });
+        const data = await res.json();
+        if (res.ok && data.subscription) {
+          window.location.href = redirect;
+        } else {
+          throw new Error(data.message || 'Something went wrong.');
+        }
+      } catch (err) {
+        btn.textContent = 'Send It →';
+        btn.disabled = false;
+        if (errorEl) {
+          errorEl.textContent = err.message || 'Something went wrong. Please try again.';
+          errorEl.style.display = 'block';
+        }
+      }
     });
   });
 

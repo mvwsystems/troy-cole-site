@@ -29,7 +29,7 @@
 
   .freebies-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2px;
   }
 
@@ -181,7 +181,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
-    .freebies-grid { grid-template-columns: 1fr 1fr; }
+    .freebies-grid { grid-template-columns: 1fr; }
     .email-inner { grid-template-columns: 1fr; gap: 48px; }
   }
   @media (max-width: 768px) {
@@ -262,8 +262,11 @@
 
     <div class="freebies-grid">
 
-      <!-- FEATURED -->
-      <div class="freebie-card featured reveal" data-download="/downloads/confident-conversations.pdf">
+      <!-- FREEBIE 1: Confident Conversations -->
+      <div class="freebie-card featured reveal"
+           data-kit-form-id="2d25dfc166"
+           data-kit-tag="18831259"
+           data-redirect="https://lcc-team.notion.site/Confident-Conversations-for-Elective-Surgery-Schedulers-33ca9672e88280f08c9cc56b12b01271">
         <div class="freebie-card-top-bar"></div>
         <div class="freebie-type">⭐ Featured Guide</div>
         <div class="freebie-icon">📞</div>
@@ -271,102 +274,31 @@
         <p class="freebie-desc">The free guide to booking more consultations — a framework for how your phone team should open, qualify, and close every inbound call with confidence.</p>
         <button class="freebie-download-btn">↓ Get the Free Guide</button>
         <div class="freebie-gate">
-          <form name="freebie-confident-conversations" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="freebie-confident-conversations">
-            <p>Enter your email and we'll send it immediately.</p>
-            <input type="email" name="email" placeholder="your@email.com">
-            <button type="submit" class="freebie-gate-submit">Send It →</button>
-          </form>
+          <p>Enter your info and we'll send it immediately.</p>
+          <input type="text" name="first_name" placeholder="First Name">
+          <input type="email" name="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+          <p class="freebie-gate-error" style="display:none;color:#f87171;font-size:12px;"></p>
         </div>
       </div>
 
-      <!-- FREEBIE 2 -->
-      <div class="freebie-card reveal reveal-delay-1" data-download="/downloads/objection-scripts.pdf">
+      <!-- FREEBIE 2: The Golden Trio -->
+      <div class="freebie-card reveal reveal-delay-1"
+           data-kit-form-id="fccef112fe"
+           data-kit-tag="18831609"
+           data-redirect="https://www.loom.com/share/396972de13594fbda9b0f10f07b2a5e1">
         <div class="freebie-card-top-bar"></div>
-        <div class="freebie-type">PDF Script Guide</div>
-        <div class="freebie-icon">🛡️</div>
-        <div class="freebie-title">OBJECTION HANDLING SCRIPTS</div>
-        <p class="freebie-desc">Word-for-word responses to the 10 most common objections your team hears: "I need to think about it," "It's too expensive," "I want to get more quotes," and more.</p>
-        <button class="freebie-download-btn">↓ Download Scripts</button>
+        <div class="freebie-type">Video Training</div>
+        <div class="freebie-icon">🏆</div>
+        <div class="freebie-title">THE GOLDEN TRIO (STOP LOSING PATIENTS ON THE PHONE)</div>
+        <p class="freebie-desc">The three conversations your phone team must master to stop losing patients before they ever walk in the door — and what to say to lead them from first contact to booked consult.</p>
+        <button class="freebie-download-btn">↓ Get Instant Access</button>
         <div class="freebie-gate">
-          <form name="freebie-objection-scripts" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="freebie-objection-scripts">
-            <p>Enter your email and we'll send it immediately.</p>
-            <input type="email" name="email" placeholder="your@email.com">
-            <button type="submit" class="freebie-gate-submit">Send It →</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- FREEBIE 3 -->
-      <div class="freebie-card reveal reveal-delay-2" data-download="/downloads/phone-audit-checklist.pdf">
-        <div class="freebie-card-top-bar"></div>
-        <div class="freebie-type">Checklist</div>
-        <div class="freebie-icon">✅</div>
-        <div class="freebie-title">PHONE CALL AUDIT CHECKLIST</div>
-        <p class="freebie-desc">Score any inbound call across 14 dimensions. Use this to identify exactly where your team is losing patients — before, during, or after the pitch.</p>
-        <button class="freebie-download-btn">↓ Get the Checklist</button>
-        <div class="freebie-gate">
-          <form name="freebie-phone-audit-checklist" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="freebie-phone-audit-checklist">
-            <p>Enter your email and we'll send it immediately.</p>
-            <input type="email" name="email" placeholder="your@email.com">
-            <button type="submit" class="freebie-gate-submit">Send It →</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- FREEBIE 4 -->
-      <div class="freebie-card reveal" data-download="/downloads/consult-framework.pdf">
-        <div class="freebie-card-top-bar"></div>
-        <div class="freebie-type">Framework PDF</div>
-        <div class="freebie-icon">📋</div>
-        <div class="freebie-title">THE CONSULT CONVERSION FRAMEWORK</div>
-        <p class="freebie-desc">A step-by-step walkthrough of the ideal refractive consultation — what to say, when to say it, and how to guide the patient toward a decision without pressure.</p>
-        <button class="freebie-download-btn">↓ Download Framework</button>
-        <div class="freebie-gate">
-          <form name="freebie-consult-framework" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="freebie-consult-framework">
-            <p>Enter your email and we'll send it immediately.</p>
-            <input type="email" name="email" placeholder="your@email.com">
-            <button type="submit" class="freebie-gate-submit">Send It →</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- FREEBIE 5 -->
-      <div class="freebie-card reveal reveal-delay-1" data-download="/downloads/pricing-talk-track.pdf">
-        <div class="freebie-card-top-bar"></div>
-        <div class="freebie-type">Talk Track</div>
-        <div class="freebie-icon">💰</div>
-        <div class="freebie-title">THE PREMIUM PRICING TALK TRACK</div>
-        <p class="freebie-desc">Stop discounting. This talk track shows your team how to confidently communicate your pricing, justify your premium, and hold the line when prospects push back.</p>
-        <button class="freebie-download-btn">↓ Get the Talk Track</button>
-        <div class="freebie-gate">
-          <form name="freebie-pricing-talk-track" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="freebie-pricing-talk-track">
-            <p>Enter your email and we'll send it immediately.</p>
-            <input type="email" name="email" placeholder="your@email.com">
-            <button type="submit" class="freebie-gate-submit">Send It →</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- FREEBIE 6 -->
-      <div class="freebie-card reveal reveal-delay-2" data-download="/downloads/lead-rescue-guide.pdf">
-        <div class="freebie-card-top-bar"></div>
-        <div class="freebie-type">Strategy Guide</div>
-        <div class="freebie-icon">🔁</div>
-        <div class="freebie-title">LEAD RESCUE PLAYBOOK</div>
-        <p class="freebie-desc">A no-show or cancellation isn't a lost patient. This playbook shows you exactly how to re-engage cold leads and bring them back to book — weeks or months later.</p>
-        <button class="freebie-download-btn">↓ Get the Playbook</button>
-        <div class="freebie-gate">
-          <form name="freebie-lead-rescue-playbook" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="freebie-lead-rescue-playbook">
-            <p>Enter your email and we'll send it immediately.</p>
-            <input type="email" name="email" placeholder="your@email.com">
-            <button type="submit" class="freebie-gate-submit">Send It →</button>
-          </form>
+          <p>Enter your info and we'll send it immediately.</p>
+          <input type="text" name="first_name" placeholder="First Name">
+          <input type="email" name="email" placeholder="your@email.com">
+          <button class="freebie-gate-submit">Send It →</button>
+          <p class="freebie-gate-error" style="display:none;color:#f87171;font-size:12px;"></p>
         </div>
       </div>
 
