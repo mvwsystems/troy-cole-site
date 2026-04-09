@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
           revealObserver.unobserve(e.target); // fire once
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
     reveals.forEach(el => revealObserver.observe(el));
   }
