@@ -24,52 +24,6 @@
   to = "/freebies.html"
   status = 301
 
-[[redirects]]
-  from = "/e3app"
-  to = "https://e3.circle.so/c/start-here/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/e3app/"
-  to = "https://e3.circle.so/c/start-here/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/apply"
-  to = "https://pgm.troycole.com/strategy-session/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/call"
-  to = "https://troycole.com/general-call-schedule/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/subscribe"
-  to = "https://logicole-consulting.ck.page/general-subscriber"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/zoom"
-  to = "https://zoom.us/j/4190685152"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/resources"
-  to = "/freebies.html"
-  status = 301
-
-[[redirects]]
-  from = "/resources/"
-  to = "/freebies.html"
-  status = 301
-
 # Custom 404
 [[redirects]]
   from = "/*"
