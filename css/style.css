@@ -510,7 +510,7 @@ footer {
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .nav-hamburger { display: flex; }
-  .mobile-menu { display: flex; }
+  .mobile-menu.open { display: flex; }
   .container { padding: 0 24px; }
   .page-hero { padding: 120px 0 60px; }
   .page-hero-geo { display: none; }
