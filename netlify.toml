@@ -3,6 +3,7 @@
 
 [build]
   publish = "."
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/blog"

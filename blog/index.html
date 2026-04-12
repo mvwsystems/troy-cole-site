@@ -282,11 +282,7 @@
      proxy (corsproxy.io) if the first fails.
   ============================================================ */
 
-  const RSS_URL = 'https://troycole.substack.com/feed';
-  const PROXIES = [
-    url => `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`,
-    url => `https://corsproxy.io/?${encodeURIComponent(url)}`
-  ];
+  const RSS_URL = '/.netlify/functions/rss-proxy';
 
   const grid  = document.getElementById('blogGrid');
   const ssBar = document.getElementById('substackBar');
@@ -383,27 +379,16 @@
       </div>`;
   }
 
-  async function tryProxy(proxyFn) {
-    const res = await fetch(proxyFn(RSS_URL));
-    if (!res.ok) throw new Error('proxy fetch failed');
-    const data = await res.json();
-    // allorigins wraps in { contents: '...' }
-    const xml = data.contents || data;
-    if (typeof xml !== 'string') throw new Error('unexpected proxy response');
-    return xml;
-  }
-
   async function loadFeed() {
-    for (const proxyFn of PROXIES) {
-      try {
-        const xml = await tryProxy(proxyFn);
-        parseAndRender(xml);
-        return;
-      } catch (err) {
-        console.warn('Proxy attempt failed, trying next…', err);
-      }
+    try {
+      const res = await fetch(RSS_URL);
+      if (!res.ok) throw new Error('fetch failed');
+      const xml = await res.text();
+      parseAndRender(xml);
+    } catch (err) {
+      console.warn('RSS load failed:', err);
+      showError();
     }
-    showError();
   }
 
   loadFeed();
