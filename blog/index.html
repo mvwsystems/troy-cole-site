@@ -22,13 +22,13 @@
     margin-top: 48px;
   }
   .blog-card {
-    background: var(--black);
+    background: var(--black-light);
     display: flex; flex-direction: column;
     position: relative; overflow: hidden;
     transition: background 0.3s;
     text-decoration: none;
   }
-  .blog-card:hover { background: var(--black-light); }
+  .blog-card:hover { background: #222222; }
   .blog-card-top-bar {
     height: 3px; background: var(--purple);
     transform: scaleX(0); transform-origin: left;
@@ -334,15 +334,10 @@
     const img      = getImage(item);
     const delay    = i > 0 ? ` reveal-delay-${Math.min((i % 3) + 1, 3)}` : '';
 
-    const imgHtml = img
-      ? `<img class="blog-card-image" src="${img}" alt="" loading="lazy">`
-      : `<div class="blog-card-image-placeholder"><span>TC</span></div>`;
-
     return `
       <a href="${link}" target="_blank" rel="noopener"
          class="blog-card${featured ? ' is-featured' : ''} reveal${delay}">
         <div class="blog-card-top-bar"></div>
-        ${imgHtml}
         <div class="blog-card-body">
           <span class="blog-card-date">${date}</span>
           <div class="blog-card-title">${title}</div>
