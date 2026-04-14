@@ -29,6 +29,22 @@
     text-decoration: none;
   }
   .blog-card:hover { background: #222222; }
+
+  /* Scroll reveal — scale up from slightly small + fade */
+  .blog-card.reveal {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.3s;
+  }
+  .blog-card.reveal.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .blog-card.reveal.reveal-delay-1 { transition-delay: 0.1s; }
+  .blog-card.reveal.reveal-delay-2 { transition-delay: 0.2s; }
+  .blog-card.reveal.reveal-delay-3 { transition-delay: 0.3s; }
   .blog-card-top-bar {
     height: 3px; background: var(--purple);
     transform: scaleX(0); transform-origin: left;
@@ -360,7 +376,7 @@
       entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
     grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
 
