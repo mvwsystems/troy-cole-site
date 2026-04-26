@@ -133,6 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('form[data-netlify="true"]:not([name^="freebie"]):not([name="email-list"])').forEach(form => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const emailInput = form.querySelector('input[type="email"]');
+      if (!emailInput || !emailInput.value.trim().includes('@')) {
+        emailInput && emailInput.focus();
+        return;
+      }
       const btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
       try {
