@@ -156,8 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ----------------------------------------------------------
      FREEBIES: KIT (CONVERTKIT) EMAIL GATE (used on freebies.html)
   ---------------------------------------------------------- */
-  const KIT_API_KEY = 'r_N6cRcFv0R3rZnkU5gIIw';
-
   document.querySelectorAll('.freebie-download-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -199,15 +197,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (errorEl) errorEl.style.display = 'none';
 
       try {
-        const res = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, {
+        const res = await fetch('/.netlify/functions/kit-subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            api_key: KIT_API_KEY,
-            first_name: firstName,
-            email: email,
-            tags: [tag]
-          })
+          body: JSON.stringify({ formId, firstName, email, tag })
         });
         const data = await res.json();
         if (res.ok && data.subscription) {
